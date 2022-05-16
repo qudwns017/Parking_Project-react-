@@ -4,9 +4,8 @@ import { useDispatch } from "react-redux";
 import { loginUser } from "../../_actions/user_action";
 import { useNavigate, Link } from "react-router-dom";
 
-function LoginM({closeModal}) {
-
-    const dispatch = useDispatch();
+function LoginM({ closeModal }) {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [Email, setEmail] = useState("");
@@ -30,58 +29,62 @@ function LoginM({closeModal}) {
 
     dispatch(loginUser(body)).then((response) => {
       if (response.payload.loginSuccess) {
+        alert("로그인에 성공하였습니다.");
+        window.location.replace("/");
         navigate("/");
       } else {
-        alert("Error˝");
+        alert(response.payload.message);
       }
     });
   };
 
+  return (
+    <div className="modalBackground">
+      <div className="modalContainer">
+        <form onSubmit={onSubmitHandler}>
+          <div
+            className={styles.background}
+            onClick={() => closeModal(false)}
+          ></div>
+          <div className={styles.loginBox}>
+            <div className={styles.loginForm}>
+              <h1>로그인</h1>
 
-    return (
-        <div className="modalBackground">
-            <div className="modalContainer">    
-                <form onSubmit={onSubmitHandler}>
-                    <div className={styles.background} onClick={()=> closeModal(false)}></div>
-                    <div className={styles.loginBox}>
-                        <div className={styles.loginForm}>
-                            <h1>로그인</h1>
-
-                            <div className={styles.txt_field}>
-                              <input
-                              className={styles.input}
-                              type="Email"
-                              autocomplete="off"
-                              onChange={onEmailHandler}
-                              required
-                              />
-                              <label>Email</label>
-                            </div>
-                            <div className={styles.txt_field}>
-                              <input
-                              className={styles.input}
-                              type="Password"
-                              autocomplete="off"
-                              onChange={onPasswordHandler}
-                              required
-                              />
-                              <label>Password</label>
-                            </div>
-                            <button className={styles.button} type="submit">
-                            로그인
-                            </button>
-                            <div className={styles.pass}>Forgot Password?</div>
-                            <div className={styles.link}>
-                                <p>아직 계정이 없으신가요? <Link to="/register">회원가입</Link></p>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    
-                </form>
+              <div className={styles.txt_field}>
+                <input
+                  className={styles.input}
+                  type="Email"
+                  autocomplete="off"
+                  onChange={onEmailHandler}
+                  required
+                />
+                <label>Email</label>
+              </div>
+              <div className={styles.txt_field}>
+                <input
+                  className={styles.input}
+                  type="Password"
+                  autocomplete="off"
+                  onChange={onPasswordHandler}
+                  required
+                />
+                <label>Password</label>
+              </div>
+              <button className={styles.button} type="submit">
+                로그인
+              </button>
+              <div className={styles.pass}>Forgot Password?</div>
+              <div className={styles.link}>
+                <p>
+                  아직 계정이 없으신가요? <Link to="/register">회원가입</Link>
+                </p>
+              </div>
             </div>
-        </div>
-    )
+          </div>
+        </form>
+      </div>
+    </div>
+  );
 }
 
 export default LoginM;
