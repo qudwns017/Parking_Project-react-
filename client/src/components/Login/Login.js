@@ -3,7 +3,8 @@ import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import LoginM from '../Login/LoginM';
 import styles from "./Login.module.css";
-
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../_actions/user_action";
 
 
 function Login() {
@@ -11,6 +12,37 @@ function Login() {
 
     const navigate = useNavigate();
     const [openModal, setOpenModal] = useState(false);
+
+    const dispatch = useDispatch();
+  
+    const [Email, setEmail] = useState("");
+    const [Password, setPassword] = useState("");
+  
+    const onEmailHandler = (event) => {
+      setEmail(event.currentTarget.value);
+    };
+  
+    const onPasswordHandler = (event) => {
+      setPassword(event.currentTarget.value);
+    };
+  
+    const onSubmitHandler = (event) => {
+      event.preventDefault();
+  
+      let body = {
+        email: Email,
+        password: Password,
+      };
+  
+      dispatch(loginUser(body)).then((response) => {
+        if (response.payload.loginSuccess) {
+          navigate("/");
+        } else {
+          alert("Error˝");
+        }
+      });
+    };
+
     const onClickHandler = () => {
         axios.get("/api/users/logout").then((response) => {
           if (response.data.success) {
@@ -23,6 +55,47 @@ function Login() {
 
     return (
         <div className="Login">
+            <form onSubmit={onSubmitHandler}>
+                <div className={styles.loginBox}>
+                    <div className={styles.design}></div>
+                    <div className={styles.loginForm}>
+                        <h1>Parking Town</h1>
+                        <div className={styles.txt_field}>
+                        <input
+                        className={styles.input}
+                        type="Email"
+                        autocomplete="off"
+                        onChange={onEmailHandler}
+                        required
+                        />
+                        <label>Email</label>
+                        </div>
+                        <div className={styles.txt_field}>
+                        <input
+                        className={styles.input}
+                        type="Password"
+                        autocomplete="off"
+                        onChange={onPasswordHandler}
+                        required
+                        />
+                        <label>Password</label>
+                        </div>
+                        <button className={styles.button} type="submit">
+                        로그인
+                        </button>
+                        <div className={styles.link}>
+                            <div className={styles.sign}>
+                                <Link to="/register" className={styles.signL}>회원가입</Link>
+                            </div>
+                            <div className={styles.pass1}>아이디 찾기</div>
+                            <div className={styles.pass2}>비밀번호 찾기</div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+
+
 
             {/* 로그인 모달창 */}
             {openModal && <div id="LoginM"
@@ -34,7 +107,7 @@ function Login() {
             >
                 <LoginM closeModal={setOpenModal}/>
             </div> }
-            <div className={styles.RLogin}>
+            {/* <div className={styles.RLogin}>
                 <a
                     className={styles.openModalBtn1}
                     onClick={() => {
@@ -48,7 +121,7 @@ function Login() {
                     <a className={styles.openModalBtn2}>회원가입</a>
                 </Link>
                 <a className={styles.openModalBtn3} onClick={onClickHandler}>로그아웃</a>
-            </div>
+            </div> */}
         </div>
     )
 }

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../../_actions/user_action";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import styles from "./RegisterPage.module.css";
 
@@ -49,7 +49,7 @@ function RegisterPage() {
     };
     dispatch(registerUser(body)).then((response) => {
       if (response.payload.success) {
-        navigate("/login");
+        navigate("/");
       } else {
         alert("Failed to sign up");
       }
@@ -59,11 +59,11 @@ function RegisterPage() {
   return (
     <form onSubmit={onSubmitHandler}>
       <div className={styles.Box}>
-        <div className={styles.title}>회원가입</div>
-        <div className={styles.Box}>
+        <div className={styles.Box2}>
           <div className={styles.SignUpForm}>
+            <h1>회원가입</h1>
             <div className={styles.info} >
-              이메일
+            <div className={styles.infoN}>이메일</div>
               <input
                 type="email"
                 className={styles.input}
@@ -73,7 +73,7 @@ function RegisterPage() {
             </div>
 
             <div className={styles.info}>
-              이름
+            <div className={styles.infoN}>이름</div>
               <input
                 type="text"
                 className={styles.input}
@@ -83,7 +83,7 @@ function RegisterPage() {
             </div>
 
             <div className={styles.info}>
-              비밀번호
+              <div className={styles.infoN}>비밀번호</div>
               <input
                 type="password"
                 className={styles.input}
@@ -93,7 +93,7 @@ function RegisterPage() {
             </div>
 
             <div className={styles.info}>
-              비밀번호 확인
+            <div className={styles.infoN}>비밀번호 확인</div>
               <input
                 type="password"
                 className={styles.input}
@@ -103,7 +103,7 @@ function RegisterPage() {
             </div>
 
             <div className={styles.info}>
-              전화번호
+            <div className={styles.infoN}>전화번호</div>
               <input
                 type="text"
                 className={styles.input}
@@ -113,8 +113,8 @@ function RegisterPage() {
             </div>
 
             <div className={styles.info2}>
-              <button type="submit">회원 가입</button>
-              <Link to="/">뒤로가기</Link>
+              <button type="submit">가입하기</button>
+              <a href="/">홈으로</a>
             </div>
           </div>
         </div>
@@ -143,6 +143,7 @@ function RegisterPage() {
                     <div className={styles.info}>전화번호
                         <input type='text' className={styles.input}  value={HandPhone} onChange={onHandPhoneHandler} />
                         </div> */}
+        <div className={styles.empty}></div>
       </div>
     </form>
   );
