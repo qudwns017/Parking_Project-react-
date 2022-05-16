@@ -11,20 +11,20 @@ export const SidebarData = [
         cName: 'nav-text'
     },
     {
-        title: '내 정보',
-        path: '/',
+        title: '주차권',
+        path: '/ticket',
         icon: <AiIcons.AiFillFile />,
         cName: 'nav-text'
     },
     {
-        title: '결제정보',
-        path: '/reports',
+        title: '주차장등록',
+        path: '/add',
         icon: <IoIcons.IoIosPaper />,
         cName: 'nav-text'
     },
     {
-        title: '즐겨찾기',
-        path: '/products',
+        title: '결제내역',
+        path: '/add',
         icon: <FaIcons.FaCartPlus />,
         cName: 'nav-text'
     },
@@ -35,7 +35,7 @@ export const SidebarData = [
         cName: 'nav-text'
     },
     {
-        title: '도움',
+        title: '제작정보',
         path: '/support',
         icon: <IoIcons.IoMdHelpCircle />,
         cName: 'nav-text'

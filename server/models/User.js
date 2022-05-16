@@ -7,24 +7,24 @@ const userSchema = mongoose.Schema({
   name: {
     type: String,
     maxlength: 30,
-    require: true,
+    required: true,
   },
   email: {
     type: String,
     trim: true,
     unique: true,
-    require: true,
+    required: true,
   },
   handphone: {
     type: String,
     trim: true,
     unique: true,
-    // require: true,
+    required: true,
   },
   password: {
     type: String,
     minlength: 5,
-    require: true,
+    required: true,
   },
   carnum: {
     type: String,
