@@ -14,6 +14,7 @@ function RegisterPage() {
   const [HandPhone, setHandPhone] = useState("");
   const [Password, setPassword] = useState("");
   const [ConfirmPassword, setConfirmPassword] = useState("");
+  const [CarNumber, setCarNumber] = useState("");
 
   const onEmailHandler = (event) => {
     setEmail(event.currentTarget.value);
@@ -34,6 +35,10 @@ function RegisterPage() {
     setConfirmPassword(event.currentTarget.value);
   };
 
+  const onCarNumberHandler = (event) => {
+    setCarNumber(event.currentTarget.value);
+  };
+
   const onSubmitHandler = (event) => {
     event.preventDefault();
 
@@ -46,6 +51,7 @@ function RegisterPage() {
       password: Password,
       name: Name,
       handphone: HandPhone,
+      carnum: CarNumber,
     };
     dispatch(registerUser(body)).then((response) => {
       if (response.payload.success) {
@@ -62,7 +68,7 @@ function RegisterPage() {
         <div className={styles.title}>회원가입</div>
         <div className={styles.Box}>
           <div className={styles.SignUpForm}>
-            <div className={styles.info} >
+            <div className={styles.info}>
               이메일
               <input
                 type="email"
@@ -110,6 +116,16 @@ function RegisterPage() {
                 value={HandPhone}
                 onChange={onHandPhoneHandler}
               />
+            </div>
+            <div className={styles.info}>
+              차량번호
+              <input
+                type="carnum"
+                className={styles.input}
+                value={CarNumber}
+                placeholder="차량번호"
+                onChange={onCarNumberHandler}
+              ></input>
             </div>
 
             <div className={styles.info2}>
