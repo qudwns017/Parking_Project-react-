@@ -9,8 +9,9 @@ import {
 } from "react-router-dom";
 
 import LandingPage from "./components/LandingPage/LandingPage";
-
-import RegisterPage from "./components/RegisterPage/RegisterPage";
+import AddPage from './components/AddPage/AddPage';
+import TicketList from './components/Ticket/TicketList';
+import Message from './components/Message/Messages';
 
 function App() {
   return (
@@ -19,7 +20,9 @@ function App() {
     
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/add" element={<AddPage />} />
+        <Route path="/ticket" element={<TicketList />} />
+        <Route path="/messages" element={<Message />} />
       </Routes> 
 
       

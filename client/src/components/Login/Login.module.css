@@ -42,33 +42,29 @@
 
 
 /* 로그인 css */
-  /* .background {
-    background-color: rgba(0, 0, 0, 0.333);
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 3;
-    display: flex;
-  }
-  
-  .loginBox {
-    z-index: 4;
-    position: absolute;
-    left: 50%;
-    top: 20%;
-    transform: translateX(-50%);
-    background-color: white;
-    width: 450px;
-    height: 500px;
-    border-radius: 10px;
-    cursor: auto; 
-  } */
-
   .design {
+    position: absolute;
     height:100%;
     width: 50%;
     background-color: #001b95;
+    animation: animate-characters1 1s ;
   }
+
+  @keyframes animate-characters1 {
+    0% {
+      width: 100%;
+      opacity: 1;
+    }
+    50% {
+      width: 100%;
+      opacity: 1;
+    }
+
+    100% {
+      width: 50%;
+      opacity: 1;
+    }
+  } 
 
 
   .loginBox {
@@ -79,7 +75,19 @@
     width: 600px;
     height: 100%;
     cursor: auto;
+    animation:animate-characters2 0.5s;
   }
+
+  @keyframes animate-characters2 {
+    0% {
+      width: 0%;
+      opacity: 1;
+    }
+    100% {
+      width: 600px;
+      opacity: 1;
+    }
+  } 
 
   
   .loginForm {
@@ -95,16 +103,55 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    animation : animate-characters3 1.5s;
   }
+
+  @keyframes animate-characters3 {
+    0% {
+      left: 150%;
+      opacity: 1;
+    }
+    75% {
+      left: 150%;
+      opacity: 1;
+    }
+    100% {
+      left: 50%;
+      opacity: 1;
+    }
+  } 
   
-  .loginForm h1{
-    
+  .loginTitle {
+    display: flex;
     width: 80%;
+    
+  }
+
+  .loginTitle h1{
+    float:left;
+    width: 100%;
     padding: 30px 0;
     padding-top: 50px;
     font-size:32px;
-    font-weight: bold;
+    font-weight: 900;
+    color: #001b95;
     margin-bottom:70px;
+  }
+
+  .loginTitle h2 {
+    color: #001b95;
+    padding-top: 35px;
+    font-size:44px;
+    cursor: pointer;
+  }
+
+  .loginTitle h5 {
+    position: absolute;
+    left: 110px;
+    top: 33px;
+    font-size:35px;
+    color: #001b95;
+    font-weight: 800;
   }
 
 
@@ -218,7 +265,6 @@
   }
   
   .Box {
-    
     position: absolute;
     top: 100px;
     left: 50%;
@@ -229,14 +275,24 @@
     background-color: white;
     box-shadow: 0 5px 5px rgba(0,0,0,0.3);
     border: #6c6dfb solid 2px;
+    animation:anime_up 1s;
   }
+
+  @keyframes anime_up {
+    0% {
+      top: 110px;
+      opacity: 0;
+    }
+    100% {
+      top: 100px;
+      opacity: 1;
+    }
+  } 
   
   .SignUpForm {
-    
     padding: 50px;
     width: 100%;
     height: 200px;
-  
   }
   
   .SignUpForm h1 {
@@ -289,7 +345,7 @@
   .info2 button {
     font-size: 18px;
     margin: 0 10px;
-    width: 250px;
+    width: 70%;
     height:70px;
     background-color: #001b95;
     color: white;

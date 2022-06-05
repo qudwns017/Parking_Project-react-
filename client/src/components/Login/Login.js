@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-import RegisterPage from "../Login/RegisterPage";
+import RegisterPage from "./RegisterPage";
 import styles from "./Login.module.css";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../../_actions/user_action";
+import * as AiIcons from "react-icons/ai";
 
 function Login() {
   const navigate = useNavigate();
@@ -45,7 +46,6 @@ function Login() {
   const onClickHandler = () => {
     axios.get("/api/users/logout").then((response) => {
       if (response.data.success) {
-        alert("로그아웃에 성공하였습니다.");
         navigate("/");
       } else {
         alert("로그아웃 하는데 실패 했습니다.");
@@ -71,7 +71,13 @@ function Login() {
         <div className={styles.loginBox}>
           <div className={styles.design}></div>
           <div className={styles.loginForm}>
-            <h1>Parking Town</h1>
+            <div className={styles.loginTitle}>
+              <h1>팍플</h1>
+              <h5>+</h5>
+              <h2 onClick={onClickHandler}>
+                <AiIcons.AiFillCar />
+              </h2>
+            </div>
             <div className={styles.txt_field}>
               <input
                 className={styles.input}
@@ -109,9 +115,6 @@ function Login() {
               </div>
               <div className={styles.pass1}>아이디 찾기</div>
               <div className={styles.pass2}>비밀번호 찾기</div>
-              <a className={styles.openModalBtn3} onClick={onClickHandler}>
-                로그아웃
-              </a>
             </div>
           </div>
         </div>

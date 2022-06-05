@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const config = require("./config/key");
 const { auth } = require("./middleware/auth");
 const { User } = require("./models/User");
+const { Company } = require("./models/Company");
 
 //application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -45,6 +46,7 @@ app.post("/api/users/login", (req, res) => {
   // console.log('ping')
   //요청된 이메일을 데이터베이스에서 있는지 찾는다.
   User.findOne({ email: req.body.email }, (err, user) => {
+    // console.log('user', user)
     if (!user) {
       return res.json({
         loginSuccess: false,
@@ -54,6 +56,10 @@ app.post("/api/users/login", (req, res) => {
 
     //요청된 이메일이 데이터 베이스에 있다면 비밀번호가 맞는 비밀번호 인지 확인.
     user.comparePassword(req.body.password, (err, isMatch) => {
+      // console.log('err',err)
+
+      // console.log('isMatch',isMatch)
+
       if (!isMatch)
         return res.json({
           loginSuccess: false,
@@ -74,6 +80,8 @@ app.post("/api/users/login", (req, res) => {
   });
 });
 
+// role 1 어드민    role 2 특정 부서 어드민
+// role 0 -> 일반유저   role 0이 아니면  관리자
 app.get("/api/users/auth", auth, (req, res) => {
   //여기 까지 미들웨어를 통과해 왔다는 얘기는  Authentication 이 True 라는 말.
   res.status(200).json({
@@ -82,16 +90,29 @@ app.get("/api/users/auth", auth, (req, res) => {
     isAuth: true,
     email: req.user.email,
     name: req.user.name,
-    password: req.user.password,
-    handphone: req.user.handphone,
-    carnum: req.user.carnum,
+    lastname: req.user.lastname,
+    role: req.user.role,
+    image: req.user.image,
   });
 });
 
 app.get("/api/users/logout", auth, (req, res) => {
+  // console.log('req.user', req.user)
   User.findOneAndUpdate({ _id: req.user._id }, { token: "" }, (err, user) => {
     if (err) return res.json({ success: false, err });
     return res.status(200).send({
+      success: true,
+    });
+  });
+});
+
+app.post("/api/companies/addcompany", (req, res) => {
+  //회사 정보
+  const company = new Company(req.body);
+
+  company.save((err, userInfo) => {
+    if (err) return res.json({ success: false, err });
+    return res.status(200).json({
       success: true,
     });
   });

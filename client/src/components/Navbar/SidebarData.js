@@ -23,8 +23,14 @@ export const SidebarData = [
         cName: 'nav-text'
     },
     {
+        title: '주차장확인',
+        path: '/list',
+        icon: <IoIcons.IoIosPaper />,
+        cName: 'nav-text'
+    },
+    {
         title: '결제내역',
-        path: '/add',
+        path: '/money',
         icon: <FaIcons.FaCartPlus />,
         cName: 'nav-text'
     },
@@ -34,10 +40,10 @@ export const SidebarData = [
         icon: <FaIcons.FaEnvelopeOpenText />,
         cName: 'nav-text'
     },
-    {
-        title: '제작정보',
-        path: '/support',
-        icon: <IoIcons.IoMdHelpCircle />,
-        cName: 'nav-text'
-    }
+    // {
+    //     title: '제작정보',
+    //     path: '/support',
+    //     icon: <IoIcons.IoMdHelpCircle />,
+    //     cName: 'nav-text'
+    // }
 ];
